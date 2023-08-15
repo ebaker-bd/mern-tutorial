@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Public = () => {
+function Public() {
   const content = (
     <section className="public">
       <header>
@@ -11,7 +11,11 @@ const Public = () => {
         </h1>
       </header>
       <main className="public__main">
-        <p>Located in Beautiful Downtown Foo City, Dan D. Repairs  provides a trained staff ready to meet your tech repair needs.</p>
+        <p>
+          Located in Beautiful Downtown Foo City,
+          Dan D. Repairs
+          provides a trained staff ready to meet your tech repair needs.
+        </p>
         <address className="public__addr">
           Dan D. Repairs
           <br />

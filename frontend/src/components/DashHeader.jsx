@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const DashHeader = () => {
+function DashHeader() {
   const content = (
     <header className="dash-header">
       <div className="dash-header__container">
