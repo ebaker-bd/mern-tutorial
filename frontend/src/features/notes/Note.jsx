@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectNoteById } from './notesApiSlice';
 
-function Note({ noteId }) {
-  const note = useSelector((state) => selectNoteById(state, noteId));
+const Note = ({ noteId }) => {
+  const note = useSelector((state) => { return selectNoteById(state, noteId); });
 
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ function Note({ noteId }) {
 
     const updated = new Date(note.updatedAt).toLocaleString('en-US', { day: 'numeric', month: 'long' });
 
-    const handleEdit = () => navigate(`/dash/notes/${noteId}`);
+    const handleEdit = () => { return navigate(`/dash/notes/${noteId}`); };
 
     return (
       <tr className="table__row">
@@ -42,5 +42,5 @@ function Note({ noteId }) {
       </tr>
     );
   } return null;
-}
+};
 export default Note;

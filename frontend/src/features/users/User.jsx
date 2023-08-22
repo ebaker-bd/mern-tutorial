@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectUserById } from './usersApiSlice';
 
-function User({ userId }) {
-  const user = useSelector((state) => selectUserById(state, userId));
+const User = ({ userId }) => {
+  const user = useSelector((state) => { return selectUserById(state, userId); });
 
   const navigate = useNavigate();
 
   if (user) {
-    const handleEdit = () => navigate(`/dash/users/${userId}`);
+    const handleEdit = () => { return navigate(`/dash/users/${userId}`); };
 
     const userRolesString = user.roles.toString().replaceAll(',', ', ');
 
@@ -34,5 +34,5 @@ function User({ userId }) {
       </tr>
     );
   } return null;
-}
+};
 export default User;

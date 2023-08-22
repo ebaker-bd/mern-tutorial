@@ -9,7 +9,11 @@ function UsersList() {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetUsersQuery(undefined, {
+    pollingInterval: 60000, // 60 sec
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
 
@@ -26,7 +30,7 @@ function UsersList() {
     const { ids } = users;
 
     const tableContent = ids?.length
-      ? ids.map((userId) => <User key={userId} userId={userId} />)
+      ? ids.map((userId) => { return <User key={userId} userId={userId} />; })
       : null;
 
     content = (

@@ -9,7 +9,11 @@ function NotesList() {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery();
+  } = useGetNotesQuery(undefined, {
+    pollingInterval: 15000, // 60 sec
+    refetchOnFocus: true,
+    refetchOnMountOrArgChange: true,
+  });
 
   let content;
 
@@ -23,7 +27,7 @@ function NotesList() {
     const { ids } = notes;
 
     const tableContent = ids?.length
-      ? ids.map((noteId) => <Note key={noteId} noteId={noteId} />)
+      ? ids.map((noteId) => { return <Note key={noteId} noteId={noteId} />; })
       : null;
 
     content = (
