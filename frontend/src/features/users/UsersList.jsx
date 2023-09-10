@@ -9,7 +9,7 @@ function UsersList() {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery(undefined, {
+  } = useGetUsersQuery('usersList', {
     pollingInterval: 60000, // 60 sec
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,

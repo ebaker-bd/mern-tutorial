@@ -9,7 +9,7 @@ function NotesList() {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery(undefined, {
+  } = useGetNotesQuery('notesList', {
     pollingInterval: 15000, // 60 sec
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,

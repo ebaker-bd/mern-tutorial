@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from './authSlice';
 import { useLoginMutation } from './authApiSlice';
+import usePersist from '../hooks/usePersist';
 
 const Login = () => {
   const userRef = useRef();
@@ -11,6 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+  const [persist, setPersist] = usePersist();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -49,6 +51,7 @@ const Login = () => {
 
   const handleUserInput = (e) => { return setUsername(e.target.value); };
   const handlePwdInput = (e) => { return setPassword(e.target.value); };
+  const handleToggle = () => { return setPersist((prev) => { return !prev; }); };
 
   const errClass = errMsg ? 'errmsg' : 'offscreen';
 
@@ -62,7 +65,9 @@ const Login = () => {
       <main className="login">
         <p ref={errRef} className={errClass} aria-live="assertive">{errMsg}</p>
         <form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">
+            Username:
+          </label>
           <input
             className="form-input"
             type="text"
@@ -73,7 +78,10 @@ const Login = () => {
             autoComplete="off"
             required
           />
-          <label htmlFor="password">Password:</label>
+
+          <label htmlFor="password">
+            Password:
+          </label>
           <input
             className="form_input"
             type="password"
@@ -82,7 +90,18 @@ const Login = () => {
             value={password}
             required
           />
-          <button className="form_submit-button"> Sign In</button>
+
+          <button type="submit" className="form_submit-button"> Sign In</button>
+          <label htmlFor="persist" className="form_persist">
+            <input
+              type="checkbox"
+              className="form_checkbox"
+              id="persist"
+              onChange={handleToggle}
+              checked={persist}
+            />
+            Trust This Device
+          </label>
         </form>
 
       </main>
